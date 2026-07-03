@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Gamaliel Yehezkiel - Sekolah Minggu</title>
+
+  <!-- PWA -->
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="theme-color" content="#1E88E5" />
+  <link rel="icon" href="/icons/logo-192.png" />
+  <link rel="apple-touch-icon" href="/icons/logo-192.png" />
+
+  <!-- Basic styles -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <!-- Inline SVG logo -->
+      <img src="logo.svg" alt="logo" class="logo" />
+      <div>
+        <h1>Gamaliel Yehezkiel</h1>
+        <p class="subtitle">YouTuber Sekolah Minggu</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h2>Selamat datang di channel Sekolah Minggu</h2>
+      <p>Nikmati lagu, cerita Alkitab, dan materi Sekolah Minggu untuk anak-anak.</p>
+
+      <!-- Button ke channel YouTube Anda (saya gunakan URL persis yang Anda berikan) -->
+      <a class="btn-youtube" href="https://youtube.com/@gamalielyehezkieldeardopur-v5o?si=MQ-47RN4vNeeKCMm" target="_blank" rel="noopener noreferrer">
+        Kunjungi Channel YouTube Saya
+      </a>
+    </section>
+
+    <section class="chat">
+      <h3>Chat Real-Time</h3>
+      <p>Di bawah ini area chat (CBOX). Ganti <code>964428</code> dengan BOX ID Anda dari cbox.ws.</p>
+
+      <!-- Cara menyematkan CBOX (ganti placeholder BOX_ID dan opsional boxtag/boxlang)
+           Anda bisa mengganti dengan kode embed yang diberikan CBOX setelah membuat box di https://cbox.ws -->
+      <div class="cbox-wrapper">
+        <!-- Contoh iframe embed CBOX; ganti boxid=964428 -->
+        <iframe
+          title="CBOX Chat"
+          src="https://www6.cbox.ws/box/?boxid=964428&boxtag=chat&boxlang=id"
+          style="width:100%;height:480px;border:0;display:block;"
+          sandbox="allow-same-origin allow-scripts allow-forms allow-popups"
+        ></iframe>
+      </div>
+
+      <p class="note">Catatan: Buat box di https://cbox.ws lalu masukkan BOX ID di atribut <code>boxid</code> di atas.</p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <small>&copy; <span id="year"></span> Gamaliel Yehezkiel — Sekolah Minggu</small>
+  </footer>
+
+  <script>
+    // Update copyright year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Register Service Worker for PWA
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js').then(() => {
+        console.log('Service Worker terdaftar.');
+      }).catch((err) => console.warn('Service Worker gagal: ', err));
+    }
+
+    // Prompt install handling (optional)
+    let deferredPrompt;
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      // You can show a custom install button/modal and call deferredPrompt.prompt() on click.
+      console.log('Aplikasi PWA siap di-install (tangani sesuai kebutuhan).');
+    });
+  </script>
+</body>
+</html>
